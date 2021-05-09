@@ -1,0 +1,26 @@
+/* Copyright C.Knops iwg-it */
+syntax = "proto3";
+
+package intelliflow;
+
+message Sensor {
+  string id = 1;
+  double value = 2;
+  string unit = 3;
+}
+message Hub {
+  string id = 1;
+  string sensors = 2;
+}
+message Admin {
+    string id = 1;
+    options option = 2;
+    string command = 3;
+    enum options{
+		default = 0;
+        restart = 1;
+        init = 2;
+        factoryreset = 3;
+        cli = 4;
+    }
+}
