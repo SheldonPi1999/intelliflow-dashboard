@@ -1,15 +1,21 @@
-# Data-Pixel | Dashboard
+# IOT Sensor Nodes
 
-![PXL - Digital](./assets/logo_pxl_hogeschool.png)
-https://github.com/lerna/lerna/tree/master/commands/add#readme
-![Docker Image CI](https://github.com/PXLDigital/3EAI-PEM-2021-Data-Pixel/workflows/Docker%20Image%20CI/badge.svg?branch=master)
+![PXL - Hogeschool](./assets/PXL_Logo.png)
+
+![UHasselt - Hogeschool](./assets/UHasselt_Logo.png)
+
+## Endpoints
+Data: http://localhost:3030/api/v1/data
+
+
+Hubs: http://localhost:3030/api/v1/hubs
+
 
 ## **Project Goal:**
 
 ---
 
-The purpose of this project is to make an interactive dashboard which translates the sensordata of the Intelliflow Hardware team to an easy-to-use and clear view over the data of multiple sensors from multiple sources.
-
+The purpose of this project is to make a dashboard which...
 &nbsp;
 
 ## **Project Explanation:**
@@ -106,9 +112,3 @@ vue add vuetify
     - Yes
     - English
 ```
-
-## **ToDo:**
-
--   [ ] Finish my changes
--   [ ] Push my commits to GitHub
--   [ ] Open a pull request
