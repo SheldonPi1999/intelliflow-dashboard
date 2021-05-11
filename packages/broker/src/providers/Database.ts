@@ -61,7 +61,7 @@ class Database {
                 .then((databases) => {
                     if (databases.includes(databaseName)) {
                         Logger.notice(`Database ${databaseName} already exists !`);
-                        resolve();
+                        // resolve();
                     } else {
                         r.dbCreate(databaseName).run(this.connection, (error, result) => {
                             if (error) {
