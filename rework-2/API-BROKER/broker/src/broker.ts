@@ -58,28 +58,11 @@ class Broker {
             // Create database and tables
             await Database.init();
 
-            // Read protofile
-            await this.readProtoFile();
-
-            this.listen();
+            // this.listen();
         } catch (error) {
             Logger.error(error);
             this.shutdown();
         }
-    }
-
-    private readProtoFile() {
-        return new Promise<string | void>((resolve, reject) => {
-            load('./src/proto/message.proto', (err, root) => {
-                if (err) {
-                    reject(new Error(err.message));
-                } else {
-                    this._protoType = root?.lookupType('Sensors.Sensor');
-                    Logger.info('Protobuffer config file loaded succesfully !');
-                    resolve();
-                }
-            });
-        });
     }
 
     public run(): void {

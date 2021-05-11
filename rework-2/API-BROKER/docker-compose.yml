@@ -54,7 +54,7 @@ services:
     ### BROKER Containter ###
     broker:
         # Defines that the service "mongo" must be running before this api service initializes.
-        depends_on: ['rethink']
+        depends_on: ['mongo', 'api']
 
         # This defines the name of the container.
         container_name: broker
@@ -76,23 +76,3 @@ services:
         # This defines the ports through which the service will be available.
         ports:
             - "1883:1883"
-  
-    ### RethinkDB Containter ###
-    rethink:
-        # RethinkDB image name/version.
-        image: rethinkdb:2.4.1
-
-        # Container always restarts if an error occured.
-        restart: always
-        
-        # This defines the name of the container.
-        container_name: rethinkdb
-
-        # Folder where the data is stored as files.
-        volumes:
-            - ./db/rethinkdb:/data/db
-        
-        # This defines the service internal port and the host port.
-        ports: 
-            - 28015:28015
-            - 8081:8081

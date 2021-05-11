@@ -140,7 +140,7 @@ class Broker {
                         } catch (error) {
                             console.log(error);
                         }
-
+                
                         console.log( `Client connected:  ${packet.payload.toString()}`);
                     }
                     hubChecker(packet);

@@ -23,8 +23,13 @@ class Database {
                 .then((response) => {
                     this.accessToken = response.data.accessToken;
                 });
+
+            /*
             await this.checkForDatabase(this.database);
+
             await this.createRequiredTables();
+            */
+
             Logger.info('Database initialization successfull !');
         } catch (error) {
             console.log(error);
@@ -142,6 +147,7 @@ class Database {
                 .tableList()
                 .run(this.connection, (error, result) => {
                     if (error) {
+                        console.log('This ?');
                         reject(error);
                     }
                     this.tables.forEach((table) => {
@@ -151,6 +157,7 @@ class Database {
                             r.db(this.database)
                                 .tableCreate(table)
                                 .run(this.connection, (err) => {
+                                    console.log('This ??');
                                     reject(err);
                                 });
                             Logger.info(`Creating table : ${table}`);

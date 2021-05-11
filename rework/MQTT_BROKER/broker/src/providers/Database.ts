@@ -53,7 +53,7 @@ class Database {
      * Search for an existing database. If it exists exit. Else create the database
      * @returns {Promise} CreateResult : The created database name
      */
-    private checkForDatabase(databaseName: string): Promise<void> {
+    private checkForDatabase(databaseName: string): Promise<CreateResult> {
         Logger.info('Checking for databases ... ');
         return new Promise((resolve, reject) => {
             r.dbList()
@@ -61,14 +61,14 @@ class Database {
                 .then((databases) => {
                     if (databases.includes(databaseName)) {
                         Logger.notice(`Database ${databaseName} already exists !`);
-                        resolve();
+                        // resolve();
                     } else {
                         r.dbCreate(databaseName).run(this.connection, (error, result) => {
                             if (error) {
                                 reject(error);
                             }
                             Logger.info(`Database '${databaseName}' created !`);
-                            resolve();
+                            resolve(result);
                         });
                     }
                 });
