@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "outDir": "./lib",
+        "rootDir": "./",
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "removeComments": true,
+        "noImplicitAny": true,
+        "resolveJsonModule": true
+    },
+    "exclude": ["test", "node_modues"]
+}

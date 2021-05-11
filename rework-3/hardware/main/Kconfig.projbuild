@@ -1,0 +1,197 @@
+menu "Intelliflow Configuration"
+    menu "Enable DEBUG"
+        config DEBUG_MODE
+        bool "Enable Debug Mode"
+        default n
+    endmenu 
+
+    menu "ESP-ID"
+        config TAG
+            string "Give your ESP a unique ID."
+            default "ESP_ID_001"
+            help
+                Give your ESP a unique ID.
+    endmenu 
+
+
+    menu "MQTT / Wifi Settings"
+        config WIFI_SSID
+            string "WiFi SSID"
+            default "myssid"
+            help
+                SSID (Network name) for the example to connect to.
+
+        config WIFI_PASSWORD
+            string "WiFi Password"
+            default "mypassword"
+            help
+                WiFi password (WPA or WPA2) for the example to use.
+
+        config BROKER_URL
+            string "Broker URL"
+            default "mqtt://broker.mqttdashboard.com"
+            help
+                URL of the broker to connect to.
+    endmenu
+
+    menu "Light Sensor Settings"
+        config LIGHT_SENSOR_TASK
+            bool "Enable Light Sensor Task."
+            default n
+            help
+                Enable Light Sensor Task.
+
+        menu "I2C Master"
+            config I2C_MASTER_SCL
+                int "SCL GPIO Num"
+                default 19
+                help
+                    GPIO number for I2C Master clock line.
+
+            config I2C_MASTER_SDA
+                int "SDA GPIO Num"
+                default 18
+                help
+                    GPIO number for I2C Master data line.
+
+            config I2C_MASTER_PORT_NUM
+                int "Port Number"
+                default 1
+                help
+                    Port number for I2C Master device.
+
+            config I2C_MASTER_FREQUENCY
+                int "Master Frequency"
+                default 100000
+                help
+                    I2C Speed of Master device.
+        endmenu
+
+        menu "I2C Slave"
+            config I2C_SLAVE_SCL
+                int "SCL GPIO Num"
+                default 5
+                help
+                    GPIO number for I2C Slave clock line.
+
+            config I2C_SLAVE_SDA
+                int "SDA GPIO Num"
+                default 4
+                help
+                    GPIO number for I2C Slave data line.
+
+            config I2C_SLAVE_PORT_NUM
+                int "Port Number"
+                default 0
+                help
+                    Port number for I2C Slave device.
+
+            config I2C_SLAVE_ADDRESS
+                hex "ESP Slave Address"
+                default 0x28
+                help
+                    Hardware Address of I2C Slave Port.
+        endmenu
+    endmenu
+
+    menu "Temperature Sensor Settings"
+        config TEMPERATURE_SENSOR_TASK
+                bool "Enable Temperature Sensor Task."
+                default n
+                help
+                    Enable Temperature Sensor Task.
+
+        config ONE_WIRE_GPIO
+            int "OneWire GPIO number"
+            range 0 33
+            default 4
+            help
+                GPIO number (IOxx) to access One Wire Bus.
+
+                Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+                GPIOs 34-39 are input-only so cannot be used to drive the One Wire Bus.
+
+        config CELCIUS    
+            bool "Enable celcius"
+            default y
+
+        config FAHRENHEIT   
+            bool "Enable fahrenheit"
+            default n
+        
+    endmenu
+
+    menu "Particle Sensor Settings"
+        config PARTICLE_SENSOR_TASK
+            bool "Enable Particle Sensor Task."
+            default n
+            help
+                Enable Particle Sensor Task.
+
+
+        config TOP_LDR
+            int "Top GPIO number"
+            range 0 33
+            default 18
+            help
+                GPIO number (IOxx) to access One Wire Bus.
+
+                Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+                GPIOs 34-39 are input-only so cannot be used to drive the One Wire Bus.
+        
+        config SIDE_LDR
+            int "Side GPIO number"
+            range 0 33
+            default 18
+            help
+                GPIO number (IOxx) to access One Wire Bus.
+
+                Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+                GPIOs 34-39 are input-only so cannot be used to drive the One Wire Bus.
+
+        menu "RGB LED Settings"
+            config RED_LED
+                int "RGB GPIO number"
+                range 0 33
+                default 18
+                help
+                    RED LED.
+
+            config GREEN_LED
+                int "RGB GPIO number"
+                range 0 33
+                default 18
+                help
+                    GREEN LED.
+
+            config BLUE_LED
+                int "RGB GPIO number"
+                range 0 33
+                default 18
+                help
+                    BLUE LED.
+        endmenu
+    endmenu
+    
+    menu "Pressure Sensor Setting"
+        config PRESSURE_SENSOR_TASK
+            bool "Enable Pressure Sensor Task."
+            default n
+            help
+                Enable Pressure Sensor Task.
+
+        config DATA_PIN
+            int "Datapin GPIO number"
+            range 0 33
+            default 4
+            help
+                GPIO number (IOxx) to access One Wire Bus.
+
+                Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+                GPIOs 34-39 are input-only so cannot be used to drive the One Wire Bus.
+    endmenu
+endmenu

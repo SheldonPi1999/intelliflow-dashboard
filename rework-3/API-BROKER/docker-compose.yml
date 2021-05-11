@@ -1,0 +1,98 @@
+# Script version for the docker-compose.yml file.
+version: '3'
+services:
+    ### API Containter ###
+    api:
+        # Defines that the service "mongo" must be running before this api service initializes.
+        depends_on: ['mongo']
+
+        # This defines the name of the container.
+        container_name: api
+
+        # This will tell docker-compose that the container definitions to build this service will be located in a Dockerfile inside the folder api.
+        build: ./api
+
+        ### IMPORTANT ###
+        # This defines the synchronicity between the host volume and the container volume.
+        volumes:
+            - ./api:/api
+
+        # This defines the base folder that will be used as reference to the commands deployed in the service during its launching process.
+        working_dir: /api
+
+        # This is a command to be executed once the service begins to run. (./bin is relative to the /api folder)
+        command: /bin/sh ./bin/build.sh
+
+        # This defines the ports through which the service will be available.
+        ports:
+            - "3030:3030"
+  
+    ### MongoDB Containter ###
+    mongo:
+        # MongoDB image name/version.
+        image: mongo:4.4.5
+
+        # Container always restarts if an error occured.
+        restart: always
+        
+        # This defines the name of the container.
+        container_name: mongodb
+
+        # Folder where the data is stored as files.
+        volumes:
+            - ./db/mongodb:/data/db
+        
+        # This defines the service internal port and the host port.
+        ports: 
+            - "27017:27017"
+
+        # Basic login 
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+
+    ### BROKER Containter ###
+    broker:
+        # Defines that the service "mongo" must be running before this api service initializes.
+        depends_on: ['api']
+
+        # This defines the name of the container.
+        container_name: broker
+
+        # This will tell docker-compose that the container definitions to build this service will be located in a Dockerfile inside the folder api.
+        build: ./broker
+
+        ### IMPORTANT ###
+        # This defines the synchronicity between the host volume and the container volume.
+        volumes:
+            - ./broker:/broker
+
+        # This defines the base folder that will be used as reference to the commands deployed in the service during its launching process.
+        working_dir: /broker
+
+        # This is a command to be executed once the service begins to run. (./bin is relative to the /api folder)
+        command: /bin/sh ./bin/build.sh
+
+        # This defines the ports through which the service will be available.
+        ports:
+            - "1883:1883"
+  
+    ### RethinkDB Containter ###
+    rethink:
+        # RethinkDB image name/version.
+        image: rethinkdb:2.4.1
+
+        # Container always restarts if an error occured.
+        restart: always
+        
+        # This defines the name of the container.
+        container_name: rethinkdb
+
+        # Folder where the data is stored as files.
+        volumes:
+            - ./db/rethinkdb:/data/db
+        
+        # This defines the service internal port and the host port.
+        ports: 
+            - 28015:28015
+            - 8081:8081

@@ -1,0 +1,9 @@
+node_modules
+.editorconfig
+.gitignore
+.prettierrc
+CHANGELOG.md
+README.md
+yarn-error.log
+package-lock.json
+.DS_Store
