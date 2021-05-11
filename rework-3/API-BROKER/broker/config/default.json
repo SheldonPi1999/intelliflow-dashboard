@@ -1,0 +1,10 @@
+{
+    "host": "localhost",
+    "port": 1883,
+    "rethink": {
+        "database": "t",
+        "hostname": "192.168.0.21",
+        "port": 28015,
+        "tables": ["hubs", "sensors"]
+    }
+}
