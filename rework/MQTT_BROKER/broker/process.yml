@@ -1,5 +1,0 @@
-apps:
-  - name: data-pixel-broker
-    script: ./lib/index.js
-    exec_mode: cluster
-    instances: 1

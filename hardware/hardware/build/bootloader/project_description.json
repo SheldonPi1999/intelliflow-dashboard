@@ -1,0 +1,21 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/Users/macbookkasper/esp/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/Users/macbookkasper/Desktop/latestpackage/IntelliFlow-dev/hardware/hardware/build/bootloader",
+    "config_file":        "/Users/macbookkasper/Desktop/latestpackage/IntelliFlow-dev/hardware/hardware/sdkconfig",
+    "config_defaults":    "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v4.4-dev-1390-g1ca2afd98",
+    "target":             "esp32",
+    "rev":                "0",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/Users/macbookkasper/esp/esp-idf/components/efuse/Kconfig;/Users/macbookkasper/esp/esp-idf/components/esp32/Kconfig;/Users/macbookkasper/esp/esp-idf/components/esp_common/Kconfig;/Users/macbookkasper/esp/esp-idf/components/esp_hw_support/Kconfig;/Users/macbookkasper/esp/esp-idf/components/esp_system/Kconfig;/Users/macbookkasper/esp/esp-idf/components/freertos/Kconfig;/Users/macbookkasper/esp/esp-idf/components/log/Kconfig;/Users/macbookkasper/esp/esp-idf/components/newlib/Kconfig;/Users/macbookkasper/esp/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/Users/macbookkasper/esp/esp-idf/components/bootloader/Kconfig.projbuild;/Users/macbookkasper/esp/esp-idf/components/esp_rom/Kconfig.projbuild;/Users/macbookkasper/esp/esp-idf/components/esptool_py/Kconfig.projbuild;/Users/macbookkasper/esp/esp-idf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp32", "esp_common", "esp_hw_support", "esp_rom", "esp_system", "esptool_py", "freertos", "hal", "log", "main", "micro-ecc", "newlib", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/Users/macbookkasper/esp/esp-idf/components/bootloader", "/Users/macbookkasper/esp/esp-idf/components/bootloader_support", "/Users/macbookkasper/esp/esp-idf/components/efuse", "/Users/macbookkasper/esp/esp-idf/components/esp32", "/Users/macbookkasper/esp/esp-idf/components/esp_common", "/Users/macbookkasper/esp/esp-idf/components/esp_hw_support", "/Users/macbookkasper/esp/esp-idf/components/esp_rom", "/Users/macbookkasper/esp/esp-idf/components/esp_system", "/Users/macbookkasper/esp/esp-idf/components/esptool_py", "/Users/macbookkasper/esp/esp-idf/components/freertos", "/Users/macbookkasper/esp/esp-idf/components/hal", "/Users/macbookkasper/esp/esp-idf/components/log", "/Users/macbookkasper/esp/esp-idf/components/bootloader/subproject/main", "/Users/macbookkasper/esp/esp-idf/components/bootloader/subproject/components/micro-ecc", "/Users/macbookkasper/esp/esp-idf/components/newlib", "/Users/macbookkasper/esp/esp-idf/components/partition_table", "/Users/macbookkasper/esp/esp-idf/components/soc", "/Users/macbookkasper/esp/esp-idf/components/spi_flash", "/Users/macbookkasper/esp/esp-idf/components/xtensa", "" ]
+}
