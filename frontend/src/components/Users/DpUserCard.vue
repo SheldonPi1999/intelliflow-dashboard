@@ -14,7 +14,9 @@
                         {{ user.email }}
                     </v-list-item-subtitle>
                 </v-list-item-content>
-                <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
+                <v-list-item-avatar tile size="80" color="grey">
+                    <v-img :src="user.imageUrl" />
+                </v-list-item-avatar>
             </v-list-item>
             <v-card-actions>
                 <v-chip
