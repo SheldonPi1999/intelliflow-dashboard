@@ -26,7 +26,7 @@ services:
 
         # Folder where the data is stored as files.
         volumes:
-            - ./db/mongodb:/data/db
+            - ./db/mongodb:/db/mongodb
         
         # This defines the service internal port and the host port.
         ports: 
@@ -62,7 +62,7 @@ services:
 
         # Folder where the data is stored as files.
         volumes:
-            - ./db/rethinkdb:/data/db
+            - ./db/rethinkdb:/db/rethinkdb
         
         # This defines the service internal port and the host port.
         ports: 

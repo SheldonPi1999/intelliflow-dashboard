@@ -1,22 +1,42 @@
 <template>
     <v-row>
         <v-col cols="6">
-            <v-card>
+            <v-card min-height="350px" max-height="400px">
                 <v-card-title>Database sensor values</v-card-title>
                 <apexchart type="radialBar"
                     :options="this.chartOptions"
                     :series="this.series1"
                     ref="dbSensorRef">
                 </apexchart>
+                <v-card min-height="55px">
+                    <v-row>
+                        <v-col cols="10" />
+                        <v-col cols="2">
+                            <v-btn rounded text class="ml-0 mr-3 mt-0 hub--bg-grey" @click="deleteDataDB()">
+                                <v-img max-width="24px" color="red" src="@/assets/icons/trash-2.svg" />
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-card>
             </v-card>
         </v-col>
          <v-col cols="6">
-            <v-card>
+            <v-card min-height="350px" max-height="400px">
                 <v-card-title>Database amount of hubs</v-card-title>
                 <apexchart type="radialBar"
                     :options="this.chartOptions"
                     :series="this.series2">
                 </apexchart>
+                <v-card min-height="55px">
+                    <v-row>
+                        <v-col cols="10" />
+                        <v-col cols="2">
+                            <v-btn rounded text class="ml-0 mr-3 mt-0 hub--bg-grey" @click="deleteHubsDB()">
+                                <v-img max-width="24px" color="red" src="@/assets/icons/trash-2.svg" />
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-card>
             </v-card>
         </v-col>
     </v-row>
@@ -90,7 +110,7 @@ export default {
         setInterval(() => {
             this.getDBSensorData();
             this.getDBHubData();
-        }, 3000);
+        }, 500);
     },
 
     methods: {
@@ -115,6 +135,38 @@ export default {
                 console.log(error);
             }
         },
+
+        async deleteDataDB() {
+            try {
+                if (confirm("Are you sure you want to delete all the sensordata?")) {
+                    const { data } = await axios.get(('http://' + apiSettings.apiServerIP + ':' + apiSettings.apiServerPort + '/api/v1/data'), {
+                        headers: {
+                            authorization: `Bearer ${localStorage.getItem('feathers-jwt')}`,
+                        },
+                    });
+
+                    for(let i = 0; i < data.data.length; i++) {
+                        this.$store.dispatch('data/remove', data.data[i]._id);
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        async deleteHubsDB() {
+            try {
+                if (confirm("Are you sure you want to delete all hubs?")) {
+                    await axios.delete(('http://' + apiSettings.apiServerIP + ':' + apiSettings.apiServerPort + '/api/v1/hubs'), {
+                        headers: {
+                            authorization: `Bearer ${localStorage.getItem('feathers-jwt')}`,
+                        },
+                    });
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
     },
 };
 </script>
