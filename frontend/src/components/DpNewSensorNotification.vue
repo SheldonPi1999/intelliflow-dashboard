@@ -23,7 +23,8 @@ Component({
 })
 export default {
     data: () => ({
-        notifiedSnackbars: [],
+        notifiedNewSnackbars: [],
+        notifiedAddedSnackbars: [],
         notifiedOfflineSnackbars: [],
         snackbar: false,
         text: "",
@@ -45,21 +46,39 @@ export default {
                 });
 
                 for(let i = 0; i < data.data.length; i++) {
-                    if(data.data[i].status === "Offline" && !(this.notifiedOfflineSnackbars.includes(data.data[i].hub_id))) {
-                            this.snackbar = true;
-                            this.text = ("Offline ESP Detected: " + data.data[i].hub_id);
-                            this.notifiedOfflineSnackbars.push(data.data[i].hub_id);
-                    } else if(data.data[i].new === true && data.data[i].status === "Online") {
-                        if(this.notifiedSnackbars.includes(data.data[i].hub_id))
+                    if(data.data[i].status === "Online" && data.data[i].new === true) {
+                        if(this.notifiedNewSnackbars.includes(data.data[i].hub_id))
                         {
                             this.snackbar = false;
                             this.text = "";
                         } else {
-                            console.log(this.notifiedSnackbars);
+                            console.log(this.notifiedNewSnackbars);
                             this.snackbar = true;
                             this.text = ("New hub detected: " + data.data[i].hub_id);
-                            this.notifiedSnackbars.push(data.data[i].hub_id);
+                            this.notifiedNewSnackbars.push(data.data[i].hub_id);
                         }
+                    } else if(data.data[i].status === "Online" && data.data[i].new === false) {
+                            if(this.notifiedAddedSnackbars.includes(data.data[i].hub_id))
+                            {
+                                this.snackbar = false;
+                                this.text = "";
+                            } else {
+                                console.log(this.notifiedAddedSnackbars);
+                                this.snackbar = true;
+                                this.text = ("New hub added to dashboard: " + data.data[i].hub_id);
+                                this.notifiedAddedSnackbars.push(data.data[i].hub_id);
+                            }
+                    } else if(data.data[i].status === "Offline" && data.data[i].new === false ) {
+                            if(this.notifiedOfflineSnackbars.includes(data.data[i].hub_id))
+                            {
+                                this.snackbar = false;
+                                this.text = "";
+                            } else {
+                                console.log(this.notifiedOfflineSnackbars);
+                                this.snackbar = true;
+                                this.text = ("Offline hub detected: " + data.data[i].hub_id);
+                                this.notifiedOfflineSnackbars.push(data.data[i].hub_id);
+                            }
                     }
                 };
             } catch (error) {

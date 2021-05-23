@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "/Users/macbookkasper/esp/esp-idf/components/bootloader/subproject",
-    "build_dir":          "/Users/macbookkasper/Desktop/latestpackage/IntelliFlow-dev/hardware/hardware/build/bootloader",
-    "config_file":        "/Users/macbookkasper/Desktop/latestpackage/IntelliFlow-dev/hardware/hardware/sdkconfig",
+    "build_dir":          "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader",
+    "config_file":        "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",

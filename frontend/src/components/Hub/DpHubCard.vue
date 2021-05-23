@@ -2,8 +2,14 @@
     <v-card class="hub">
         <v-card-title class="hub__title">
             HUB
-            <span class="hub__subtitle">#{{ hub.hub_id }} </span>
+            <span class="hub__subtitle">#{{ hub.hub_id }}</span>
             <v-spacer />
+            <v-badge v-if="hub.status == 'Online'" color="green" dot bordered>
+                {{ hub.status }} 
+            </v-badge>
+            <v-badge v-else color="red" dot bordered>
+                {{ hub.status }} 
+            </v-badge>
         </v-card-title>
         <v-card-text class="hub__container">
             <v-row>

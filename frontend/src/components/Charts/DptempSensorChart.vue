@@ -73,7 +73,7 @@ export default {
                 });
 
                 if (data.data.length < 5) {
-                    this.$data.temperatureData = [0, 0, 0, 0, 0];
+                    this.$data.temperatureData = [-999, -999, -999, -999, -999];
                 } else {
                     this.$data.temperatureData = [data.data[data.data.length - 5].value, data.data[data.data.length - 4].value, data.data[data.data.length - 3].value, data.data[data.data.length - 2].value,  data.data[data.data.length - 1].value];
                 }

@@ -13,7 +13,7 @@
 
 #include "./components/packageAndSend.h"
 
-TaskHandle_t xHandle;
+TaskHandle_t xHandleTempTask;
 Data data_send;
 
 #define GPIO_DS18B20_0       (CONFIG_ONE_WIRE_GPIO)
@@ -22,6 +22,7 @@ Data data_send;
 #define SAMPLE_PERIOD        (1000)   // milliseconds
 
 void tempSensorTask(void) {
+    xHandleTempTask = xTaskGetCurrentTaskHandle();
     // Override global log level
     esp_log_level_set("*", ESP_LOG_INFO);
 
@@ -185,7 +186,8 @@ void tempSensorTask(void) {
 
                 printf("  %d: %f    %d errors\n", i, readings[i], errors_count[i]);
                 data_send.raw_data = readings[i];
-                packageAndSend(xHandle, data_send);
+                // memcpy(&data_send.raw_data, &readings[i], sizeof data_send.raw_data);
+                packageAndSend(xHandleTempTask, data_send);
             }
 
             vTaskDelay(500);

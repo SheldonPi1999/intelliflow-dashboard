@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/macbookkasper/Desktop/latestpackage/IntelliFlow-dev/hardware/hardware/build/esp-idf/newlib/port/cmake_install.cmake")
+  include("/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/esp-idf/newlib/port/cmake_install.cmake")
 
 endif()
 

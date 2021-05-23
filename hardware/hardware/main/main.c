@@ -72,6 +72,7 @@ void Queue(void *pvParameter)
                 sprintf(raw_data_string, "%u", data_received->raw_data);
 
                 printf("String to send: %s\n", raw_data_string);
+                printf("SENDSEND: %s\n", data_received->topic);
                 
                 esp_mqtt_client_publish(client, data_received->topic, raw_data_string, 0, 1, 0);
             } else {
@@ -106,7 +107,9 @@ void app_main(void)
 
     // i2c init
     ESP_ERROR_CHECK(i2c_slave_init());
+    printf("Slave init succeeded");
     ESP_ERROR_CHECK(i2c_master_init());
+    printf("Master init succeeded");
 
     q = xQueueCreate(10, sizeof(struct Data*));
     // IF q == NULL -> Failed to create queue

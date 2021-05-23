@@ -1,7 +1,7 @@
 <template>
     <v-row>
         <v-col cols="6">
-            <v-card min-height="350px" max-height="400px">
+            <v-card max-height="400px">
                 <v-card-title>Database sensor values</v-card-title>
                 <apexchart type="radialBar"
                     :options="this.chartOptions"
@@ -21,7 +21,7 @@
             </v-card>
         </v-col>
          <v-col cols="6">
-            <v-card min-height="350px" max-height="400px">
+            <v-card max-height="400px">
                 <v-card-title>Database amount of hubs</v-card-title>
                 <apexchart type="radialBar"
                     :options="this.chartOptions"
@@ -144,6 +144,9 @@ export default {
                             authorization: `Bearer ${localStorage.getItem('feathers-jwt')}`,
                         },
                     });
+
+                    console.log(data.total);
+                    console.log(data);
 
                     for(let i = 0; i < data.data.length; i++) {
                         this.$store.dispatch('data/remove', data.data[i]._id);

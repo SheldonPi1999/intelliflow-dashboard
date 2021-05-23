@@ -15,7 +15,7 @@
                 <div>
                     <span
                     class="display-2 font-weight-black"
-                    v-text="'('+lastR+', '+lastG+', '+lastB+')'"
+                    v-text="'('+R_data[0]+', '+G_data[0]+', '+B_data[0]+')'"
                     ></span>
                     <strong>RGB</strong>
                 </div>
@@ -46,9 +46,9 @@ export default {
 
     data: () => ({
         lightData: [],
-        lastR: [0],
-        lastG: [0],
-        lastB: [0],
+        R_data: [0],
+        G_data: [0],
+        B_data: [0],
     }),
 
     mounted() {
@@ -71,12 +71,12 @@ export default {
                 if (data.data.length < 5) {
                     this.$data.lightData = [0, 0, 0, 0, 0];
                 } else {
-                    this.$data.lightData= [data.data[data.data.length - 5].value, data.data[data.data.length - 4].value, data.data[data.data.length - 3].value, data.data[data.data.length - 2].value,  data.data[data.data.length - 1].value];
+                    this.$data.lightData= [(data.data[data.data.length - 5]).value, (data.data[data.data.length - 4]).value, (data.data[data.data.length - 3]).value, (data.data[data.data.length - 2]).value,  (data.data[data.data.length - 1]).value];
                 }
 
-                this.$data.lastR = this.$data.lightData[4].R;
-                this.$data.lastG = this.$data.lightData[4].G;
-                this.$data.lastB = this.$data.lightData[4].B;
+                this.$data.R_data[0] = (this.$data.lightData[4] / 0xFFFFFF * 255).toFixed();
+                this.$data.G_data[0] = (this.$data.lightData[4] / 0xFFFFFF * 255).toFixed();
+                this.$data.B_data[0] = (this.$data.lightData[4] / 0xFFFFFF * 255).toFixed();
 
             } catch (error) {
                 console.log(error);

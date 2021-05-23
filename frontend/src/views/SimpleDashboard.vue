@@ -13,8 +13,12 @@
             <DpparticleSensorChart :particle="particle"/>
         </v-col>
 
-        <v-col v-for="temp in testS" :key="temp" cols="6">
-            <DptempSensorChart :temp="temp"/>
+        <v-col v-for="test in testS" :key="test" cols="6">
+            <DptestSensorChart :test="test"/>
+        </v-col>
+
+        <v-col v-for="speed in speedS" :key="speed" cols="6">
+            <DpspeedSensorChart :speed="speed"/>
         </v-col>
     </v-row>
 </template>
@@ -22,22 +26,28 @@
 <script lang="ts">
 import axios from 'axios';
 import { Component, Vue } from 'vue-property-decorator';
+import DptestSensorChart from '@/components/Charts/DptestSensorChart.vue';
 import DptempSensorChart from '@/components/Charts/DptempSensorChart.vue';
 import DplightSensorChart from '@/components/Charts/DplightSensorChart.vue';
 import DppressureSensorChart from '@/components/Charts/DppressureSensorChart.vue';
 import DpparticleSensorChart from '@/components/Charts/DpparticleSensorChart.vue';
+import DpspeedSensorChart from '@/components/Charts/DpspeedSensorChart.vue';
 import apiSettings from '../../apiSettings.json';
 
 @Component({
     components: {
+        DptestSensorChart,
         DptempSensorChart,
         DplightSensorChart,
         DppressureSensorChart,
         DpparticleSensorChart,
+        DpspeedSensorChart,
     },
 })
 
 export default class TestDashboard extends Vue {
+    testS = [];
+
     tempS = [];
 
     lightS = [];
@@ -46,7 +56,7 @@ export default class TestDashboard extends Vue {
 
     particleS = [];
 
-    testS = [];
+    speedS = [];
 
     // eslint-disable-next-line
     async getAllSensorData() {
@@ -65,37 +75,58 @@ export default class TestDashboard extends Vue {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hub_id),
                                 sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
                             };
                             this.tempS.push(sensorInfo);
                         } else if (((data.data)[i].sensors[j]).includes('light')) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hub_id),
                                 sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
                             };
                             this.lightS.push(sensorInfo);
                         } else if (((data.data)[i].sensors[j]).includes('pressure')) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hub_id),
                                 sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
                             };
                             this.pressureS.push(sensorInfo);
                         } else if (((data.data)[i].sensors[j]).includes('particle')) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hub_id),
                                 sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
                             };
                             this.particleS.push(sensorInfo);
-                        } else if (((data.data)[i].sensors[j]).includes('test')) {
+                        } else if (((data.data)[i].sensors[j]).includes('speed')) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hub_id),
                                 sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
+                            };
+                            this.speedS.push(sensorInfo);
+                        } else {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hub_id),
+                                sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
                             };
                             this.testS.push(sensorInfo);
                         }
                     }
                 }
+            }
 
-                console.log(this.tempS);
+            console.log(this.pressureS.length);
+
+            for (let i = 0; i < this.pressureS.length; i++) {
+                console.log(this.pressureS.length);
+                const sensorInfo = {
+                    hub_id: "Virtual created speedsensor",
+                    sensor: "Virtual",
+                };
+                this.speedS.push(sensorInfo);
             }
         } catch (error) {
             console.log(error);

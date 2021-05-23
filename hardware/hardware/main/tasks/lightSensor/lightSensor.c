@@ -11,7 +11,7 @@
 
 #include "./components/packageAndSend.h"
 
-TaskHandle_t xHandle;
+TaskHandle_t xHandleLightSensor;
 Data data_send;
 
 enum {
@@ -113,6 +113,7 @@ esp_err_t i2c_master_init(void)
 {
     int i2c_master_port = I2C_MASTER_NUM;
     i2c_config_t conf;
+    conf.clk_flags = 0;
     conf.mode = I2C_MODE_MASTER;
     conf.sda_io_num = I2C_MASTER_SDA_IO;
     conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
@@ -129,13 +130,14 @@ esp_err_t i2c_slave_init(void)
 {
     int i2c_slave_port = I2C_SLAVE_NUM;
     i2c_config_t conf_slave;
+    conf_slave.clk_flags = 0;
     conf_slave.sda_io_num = I2C_SLAVE_SDA_IO;
     conf_slave.sda_pullup_en = GPIO_PULLUP_ENABLE;
     conf_slave.scl_io_num = I2C_SLAVE_SCL_IO;
     conf_slave.scl_pullup_en = GPIO_PULLUP_ENABLE;
     conf_slave.mode = I2C_MODE_SLAVE;
     conf_slave.slave.addr_10bit_en = 0;
-    conf_slave.slave.slave_addr = ESP_SLAVE_ADDR;
+    conf_slave.slave.slave_addr = 0x28; //ESP_SLAVE_ADDR;
     i2c_param_config(i2c_slave_port, &conf_slave);
     return i2c_driver_install(i2c_slave_port, conf_slave.mode, I2C_SLAVE_RX_BUF_LEN, I2C_SLAVE_TX_BUF_LEN, 0);
 }
@@ -322,6 +324,8 @@ bool setupLightSensor(void) {
 }
 
 void lightSensorTask(void *pvParameter){
+  xHandleLightSensor = xTaskGetCurrentTaskHandle();
+
   bool setupCompleted;
 
   setupCompleted = setupLightSensor();
@@ -353,25 +357,26 @@ void lightSensorTask(void *pvParameter){
         printf("Queue is not ready \n");
         return;
     } else {
-        printf("Values sent on queue from Task_1:\n");
+        printf("What is the tasknameeeeeee?????: %s", pcTaskGetTaskName(xHandleLightSensor));
 
         data_send.raw_data = calibratedValues[AS726x_VIOLET];
-        packageAndSendExtraConf(xHandle, data_send, "AS726x_VIOLET");
+        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_VIOLET");
         
         data_send.raw_data = calibratedValues[AS726x_BLUE];
-        packageAndSendExtraConf(xHandle, data_send, "AS726x_BLUE");
+        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_BLUE");
         
         data_send.raw_data = calibratedValues[AS726x_GREEN];
-        packageAndSendExtraConf(xHandle, data_send, "AS726x_GREEN");
+        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_GREEN");
 
         data_send.raw_data = calibratedValues[AS726x_YELLOW];
-        packageAndSendExtraConf(xHandle, data_send, "AS726x_YELLOW");
+        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_YELLOW");
 
         data_send.raw_data = calibratedValues[AS726x_ORANGE];
-        packageAndSendExtraConf(xHandle, data_send, "AS726x_ORANGE");
+        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_ORANGE");
 
         data_send.raw_data = calibratedValues[AS726x_RED];
-        packageAndSendExtraConf(xHandle, data_send, "AS726x_RED");
+        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_RED");
+
     }
 
     printf(" Violet: %x\n", calibratedValues[AS726x_VIOLET]);

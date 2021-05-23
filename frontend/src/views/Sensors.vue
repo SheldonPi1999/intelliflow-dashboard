@@ -18,16 +18,14 @@ export default class Sensors extends Vue {
 
     entries = [];
 
+    diffInTime = [];
+
     headers = [
-        {
-            text: 'Hub',
-            align: 'start',
-            sortable: true,
-            value: 'hubID',
-        },
+        { text: 'Hub', align: 'start', sortable: true, value: 'hubID'},
         { text: 'Type', value: 'type' },
         { text: 'Task', value: 'task' },
         { text: 'Topic', value: 'topic' },
+        { text: 'Last value', value: 'timeSinceLastData' },
     ];
 
     mounted() {
@@ -56,7 +54,33 @@ export default class Sensors extends Vue {
                             } else {
                                 typeOfSensor = 'Unknown sensor: "Add sensor to Sensors.vue"';
                             }
-                            this.entries.push({ hubID: hub.hub_id, type: typeOfSensor, task: sensor, topic: ("intelliflow>" + hub.hub_id + ">" + sensor + ">data>") });
+
+                            axios
+                                .get(('http://' + apiSettings.apiServerIP + ':' + apiSettings.apiServerPort + '/api/v1/data'), {
+                                    params: {
+                                        sensorId: sensor,
+                                    },
+                                })
+                                .then((response: any) => {
+                                
+                                // console.log(response.data.data[response.data.total-1].createdAt); 
+                                
+                                const lastDataTime = new Date(response.data.data[response.data.total-1].createdAt)
+                                const now = new Date();
+
+                                const diff =  Math.floor((now - lastDataTime) / 1e3);
+                                const lastValue = response.data.data[response.data.total-1].value;
+
+                                console.log(diff);
+
+                                this.entries.push({ 
+                                    hubID: hub.hub_id, 
+                                    type: typeOfSensor, 
+                                    task: sensor, 
+                                    topic: ("intelliflow>" + hub.hub_id + ">" + sensor + ">data>"),
+                                    timeSinceLastData: lastValue + " (" + diff + " seconds ago)",
+                                });
+                            });
                         });
                     }
                 });

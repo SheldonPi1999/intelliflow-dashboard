@@ -11,6 +11,6 @@ typedef struct{
 } Data; 
 
 void packageAndSend(TaskHandle_t xHandle, Data data_send);
-void packageAndSendExtraConf(TaskHandle_t xHandle, Data data_send, char* extraConfig);
+void packageAndSendExtraConf(TaskHandle_t xHandle, Data data_send, char extraConfig[]);
 
 #endif

@@ -1,4 +1,4 @@
-/* * Data converted from /Users/macbookkasper/Desktop/latestpackage/IntelliFlow-dev/hardware/hardware/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

@@ -152,6 +152,24 @@ const routes: Array<RouteConfig> = [
         beforeEnter: isLoggedIn,
     },
     {
+        path: '/HardwareConfig',
+        name: 'HardwareConfig',
+        component: () => import('../views/HardwareConfig.vue'),
+        meta: {
+            breadcrumbs: [
+                {
+                    to: '/',
+                    text: 'Dashboard',
+                },
+                {
+                    to: '/HardwareConfig',
+                    text: 'HardwareConfig',
+                },
+            ],
+        },
+        beforeEnter: isLoggedIn,
+    },
+    {
         path: '/login',
         name: 'Login',
         component: () => import('../views/Login.vue'),

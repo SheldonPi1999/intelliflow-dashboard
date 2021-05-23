@@ -75,7 +75,6 @@ export default Vue.extend({
                 });
 
                 for (let i = 0; i < (data.data.length); i += 1) {
-                    // console.log(data.data[i].hub_id);
                     this.getLastDataPoint(data.data[i].hub_id)
                 }
             } catch (error) {
@@ -99,6 +98,7 @@ export default Vue.extend({
 
                     if (diff < 60e3) {
                         console.log(Math.floor(diff / 1e3), 'seconds ago');
+                        this.reconnectHub(hub_id);
                     } else {
                         console.log(Math.floor(diff / 60e3), 'minutes ago');
                         this.disconnectHub(hub_id);
@@ -123,7 +123,26 @@ export default Vue.extend({
                 });
                 console.log(hub_id);
                 for(let i = 0; i < data.data.length; i++) {
-                    this.$store.dispatch('hubs/update', [data.data[i]._id, { ...(data.data[i]), new: true, status: "Offline" }]);
+                    this.$store.dispatch('hubs/update', [data.data[i]._id, { ...(data.data[i]), status: "Offline" }]);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        async reconnectHub(hub_id: string) {
+            try { 
+                const { data } = await axios.get(('http://' + apiSettings.apiServerIP + ':' + apiSettings.apiServerPort + '/api/v1/hubs'), {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('feathers-jwt')}`,
+                    },
+                    params: {
+                        hub_id: hub_id,
+                    },
+                });
+                console.log(hub_id);
+                for(let i = 0; i < data.data.length; i++) {
+                    this.$store.dispatch('hubs/update', [data.data[i]._id, { ...(data.data[i]), status: "Online" }]);
                 }
             } catch (error) {
                 console.log(error);
