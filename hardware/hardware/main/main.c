@@ -46,7 +46,7 @@ esp_mqtt_client_handle_t client;
 const char *TAG = CONFIG_TAG;
 
 typedef struct{
-    char topic[50];
+    char topic[100];
     uint32_t raw_data;
 } Data; 
 
@@ -71,12 +71,12 @@ void Queue(void *pvParameter)
 
                 sprintf(raw_data_string, "%u", data_received->raw_data);
 
-                printf("String to send: %s\n", raw_data_string);
-                printf("SENDSEND: %s\n", data_received->topic);
+                // printf("String to send: %s\n", raw_data_string);
+                // printf("SENDSEND: %s\n", data_received->topic);
                 
                 esp_mqtt_client_publish(client, data_received->topic, raw_data_string, 0, 1, 0);
             } else {
-                printf("No new data to be send.\n");
+                // printf("No new data to be send.\n");
             }
         }
     }

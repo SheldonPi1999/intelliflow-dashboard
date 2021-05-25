@@ -1,4 +1,4 @@
-# Install script for directory: /Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/components/esp32-owb
+# Install script for directory: /Users/macbookkasper/Documents/Stage/Github/hardware/hardware/components/esp32-owb
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

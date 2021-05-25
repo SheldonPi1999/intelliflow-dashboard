@@ -12,7 +12,6 @@
 #include "./components/packageAndSend.h"
 
 TaskHandle_t xHandleLightSensor;
-Data data_send;
 
 enum {
   AS726x_VIOLET = 0,
@@ -357,40 +356,44 @@ void lightSensorTask(void *pvParameter){
         printf("Queue is not ready \n");
         return;
     } else {
-        printf("What is the tasknameeeeeee?????: %s", pcTaskGetTaskName(xHandleLightSensor));
-
-        data_send.raw_data = calibratedValues[AS726x_VIOLET];
-        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_VIOLET");
+      
+        packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_VIOLET], "AS726x_VIOLET");
+        // Delay 100ms
+        vTaskDelay(100);
         
-        data_send.raw_data = calibratedValues[AS726x_BLUE];
-        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_BLUE");
+        packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_BLUE], "AS726x_BLUE");
+        // Delay 100ms
+        vTaskDelay(100);
         
-        data_send.raw_data = calibratedValues[AS726x_GREEN];
-        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_GREEN");
+        packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_GREEN], "AS726x_GREEN");
+        // Delay 100ms
+        vTaskDelay(100);
 
-        data_send.raw_data = calibratedValues[AS726x_YELLOW];
-        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_YELLOW");
+        packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_YELLOW], "AS726x_YELLOW");
+        // Delay 100ms
+        vTaskDelay(100);
 
-        data_send.raw_data = calibratedValues[AS726x_ORANGE];
-        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_ORANGE");
+        packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_ORANGE], "AS726x_ORANGE");
+        // Delay 100ms
+        vTaskDelay(100);
 
-        data_send.raw_data = calibratedValues[AS726x_RED];
-        packageAndSendExtraConf(xHandleLightSensor, data_send, "AS726x_RED");
-
+        packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_RED], "AS726x_RED");
+        // Delay 100ms
+        vTaskDelay(100);
     }
-
+/*
     printf(" Violet: %x\n", calibratedValues[AS726x_VIOLET]);
     printf(" Blue: %x\n", calibratedValues[AS726x_BLUE]);    
     printf(" Green: %x\n", calibratedValues[AS726x_GREEN]);    
     printf(" Yellow: %x\n", calibratedValues[AS726x_YELLOW]);
     printf(" Orange: %x\n", calibratedValues[AS726x_ORANGE]); 
     printf(" Red: %x\n\n", calibratedValues[AS726x_RED]);
-
+  */
     #ifdef AS7262_LED
       virtualWrite(AS726X_DEVICE_LED, 0b00000000);
     #endif
 
-    // Delay 5s
+    // Delay 500ms
     vTaskDelay(500);
   }  
 }

@@ -14,7 +14,7 @@
 #include "./components/packageAndSend.h"
 
 TaskHandle_t xHandleTempTask;
-Data data_send;
+uint32_t dataUintCopy;
 
 #define GPIO_DS18B20_0       (CONFIG_ONE_WIRE_GPIO)
 #define MAX_DEVICES          (8)
@@ -185,9 +185,8 @@ void tempSensorTask(void) {
                 }
 
                 printf("  %d: %f    %d errors\n", i, readings[i], errors_count[i]);
-                data_send.raw_data = readings[i];
-                // memcpy(&data_send.raw_data, &readings[i], sizeof data_send.raw_data);
-                packageAndSend(xHandleTempTask, data_send);
+                memcpy(&dataUintCopy, &readings[i], sizeof dataUintCopy);
+                packageAndSend(xHandleTempTask, dataUintCopy);
             }
 
             vTaskDelay(500);

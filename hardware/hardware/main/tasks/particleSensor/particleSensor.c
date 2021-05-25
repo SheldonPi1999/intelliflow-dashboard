@@ -78,7 +78,7 @@ void particleSensorTask(void)
         printf("TOP: %u\n", value);
 
         data_send.raw_data = value;
-        packageAndSendExtraConf(xHandle, data_send, "Top");
+        packageAndSendExtraConf(xHandle, value, "Top");
 
         vTaskDelay(100);
         
@@ -88,7 +88,7 @@ void particleSensorTask(void)
         printf("SIDE: %u\n", value);
 
         data_send.raw_data = value;
-        packageAndSendExtraConf(xHandle, data_send, "Side");
+        packageAndSendExtraConf(xHandle, value, "Side");
         
         vTaskDelay(100);        
     }

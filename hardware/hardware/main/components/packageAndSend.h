@@ -6,11 +6,11 @@
 #include "freertos/queue.h"
 
 typedef struct{
-    char topic[50];
+    char topic[100];
     uint32_t raw_data;
 } Data; 
 
-void packageAndSend(TaskHandle_t xHandle, Data data_send);
-void packageAndSendExtraConf(TaskHandle_t xHandle, Data data_send, char extraConfig[]);
+void packageAndSend(TaskHandle_t xHandle, uint32_t data);
+void packageAndSendExtraConf(TaskHandle_t xHandle, uint32_t data, char extraConfig[]);
 
 #endif

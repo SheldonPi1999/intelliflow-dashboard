@@ -3,9 +3,6 @@
         <v-col v-for="temp in tempS" :key="temp" cols="6">
             <DptempSensorChart :temp="temp"/>
         </v-col>
-        <v-col v-for="light in lightS" :key="light" cols="6">
-            <DplightSensorChart :light="light"/>
-        </v-col>
         <v-col v-for="pressure in pressureS" :key="pressure" cols="6">
             <DppressureSensorChart :pressure="pressure"/>
         </v-col>
@@ -19,6 +16,10 @@
 
         <v-col v-for="speed in speedS" :key="speed" cols="6">
             <DpspeedSensorChart :speed="speed"/>
+        </v-col>
+
+        <v-col v-for="light in lightS" :key="light" cols="6">
+            <DplightSensorChart :light="light"/>
         </v-col>
     </v-row>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <v-card class="sensor" width="210" flat outlined>
+    <v-card class="sensor" width="205" flat outlined>
         <v-container class="pa-0 ma-0">
             <v-row align="center" class="pa-0 ma-0">
                 <v-col cols="3">

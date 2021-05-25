@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto" color="grey lighten-4" max-width="800">
+    <v-card class="mx-auto" max-width="800" :color="pressure.status === 'Online' ? 'grey lighten-4' : 'red lighten-4'">
         <v-card-title>
             <v-icon :color="'indigo'" class="mr-4" size="64">
                 mdi-gauge

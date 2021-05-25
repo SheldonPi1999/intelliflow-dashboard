@@ -280,7 +280,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_main_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /opt/homebrew/Cellar/cmake/3.20.2/bin/cmake --regenerate-during-build -S/Users/macbookkasper/esp/esp-idf/components/bootloader/subproject -B/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader
+  command = /opt/homebrew/Cellar/cmake/3.20.2/bin/cmake --regenerate-during-build -S/Users/macbookkasper/esp/esp-idf/components/bootloader/subproject -B/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader
   description = Re-running CMake...
   generator = 1
 

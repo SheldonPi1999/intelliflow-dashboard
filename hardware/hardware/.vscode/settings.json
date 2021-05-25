@@ -18,6 +18,7 @@
         "packageandsend.h": "c",
         "ds18b20.h": "c",
         "string.h": "c",
-        "testtask.h": "c"
+        "testtask.h": "c",
+        "stdio.h": "c"
     }
 }

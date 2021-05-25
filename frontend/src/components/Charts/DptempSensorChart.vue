@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto" color="grey lighten-4" max-width="800">
+    <v-card class="mx-auto" max-width="800" :color="temp.status === 'Online' ? 'grey lighten-4' : 'red lighten-4'">
         <v-card-title>
             <v-icon :color="'indigo'" class="mr-4" size="64">
                 mdi-thermometer
@@ -72,11 +72,29 @@ export default {
                     },
                 });
 
+                let dataFloat32 = [];
+
                 if (data.data.length < 5) {
                     this.$data.temperatureData = [-999, -999, -999, -999, -999];
                 } else {
-                    this.$data.temperatureData = [data.data[data.data.length - 5].value, data.data[data.data.length - 4].value, data.data[data.data.length - 3].value, data.data[data.data.length - 2].value,  data.data[data.data.length - 1].value];
+                    for (let i = 1; i <= 5; i++) {
+                        let dataToConvert = (data.data[data.data.length - i].value);
+                        let sign = (dataToConvert >>> 31) ? -1 : 1;
+                        let exp = (dataToConvert >>> 23 & 0xff) - 127;
+                        let mantissa = ((dataToConvert & 0x7fffff) + 0x800000).toString(2);
+                        let float32 = 0
+                        
+                        for (let i = 0; i < mantissa.length; i += 1) { 
+                            float32 += parseInt(mantissa[i]) ? Math.pow(2, exp) : 0; 
+                            exp-- 
+                        }
+
+                        dataFloat32[i] = float32 * sign;
+                    }
                 }
+                    
+                    this.$data.temperatureData = [dataFloat32[5], dataFloat32[4], dataFloat32[3], dataFloat32[2], dataFloat32[1]];
+            
             } catch (error) {
                 console.log(error);
             }

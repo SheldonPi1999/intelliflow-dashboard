@@ -41,6 +41,8 @@ export default class Sensors extends Vue {
                         hub.sensors.forEach((sensor: any) => {
                             let typeOfSensor;
 
+                            console.log(sensor);
+
                             if (sensor.includes('test')) {
                                 typeOfSensor = 'Testsensor';
                             } else if (sensor.includes('light')) {
@@ -62,24 +64,29 @@ export default class Sensors extends Vue {
                                     },
                                 })
                                 .then((response: any) => {
-                                
-                                // console.log(response.data.data[response.data.total-1].createdAt); 
-                                
-                                const lastDataTime = new Date(response.data.data[response.data.total-1].createdAt)
-                                const now = new Date();
+                                    if (response.data.data.length > 0) {
+                                        const lastDataTime = new Date(response.data.data[response.data.total-1].createdAt)
+                                        const now = new Date();
 
-                                const diff =  Math.floor((now - lastDataTime) / 1e3);
-                                const lastValue = response.data.data[response.data.total-1].value;
+                                        const diff =  Math.floor((now - lastDataTime) / 1e3);
+                                        const lastValue = response.data.data[response.data.total-1].value;
 
-                                console.log(diff);
-
-                                this.entries.push({ 
-                                    hubID: hub.hub_id, 
-                                    type: typeOfSensor, 
-                                    task: sensor, 
-                                    topic: ("intelliflow>" + hub.hub_id + ">" + sensor + ">data>"),
-                                    timeSinceLastData: lastValue + " (" + diff + " seconds ago)",
-                                });
+                                        this.entries.push({ 
+                                            hubID: hub.hub_id, 
+                                            type: typeOfSensor, 
+                                            task: sensor, 
+                                            topic: ("intelliflow>" + hub.hub_id + ">" + sensor + ">data>"),
+                                            timeSinceLastData: lastValue + " (" + diff + " seconds ago)",
+                                        });
+                                    } else {
+                                        this.entries.push({ 
+                                            hubID: hub.hub_id, 
+                                            type: typeOfSensor, 
+                                            task: sensor, 
+                                            topic: ("intelliflow>" + hub.hub_id + ">" + sensor + ">data>"),
+                                            timeSinceLastData: "No recorded values.",
+                                        });
+                                    }
                             });
                         });
                     }

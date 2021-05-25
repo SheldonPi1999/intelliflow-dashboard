@@ -12,7 +12,8 @@ export default function (app: Application): Model<any> {
   const schema = new Schema({
     hubId: { type: String, required: true },
     sensorId: { type: String, required: true },
-    value: { type: Number, required: true }
+    value: { type: Number, required: true },
+    extraId: { type: String }
   }, {
     timestamps: true
   });

@@ -12,7 +12,6 @@
 #include "./components/packageAndSend.h"
 
 TaskHandle_t xHandle;
-Data data_send;
 
 void testTask(void *pvParameter){
   int data = 0;
@@ -20,7 +19,6 @@ void testTask(void *pvParameter){
   while(1)
   {
     xHandle = xTaskGetCurrentTaskHandle();
-    sprintf(data_send.topic, "%s", "");
     
     printf("%s is running.\n", pcTaskGetTaskName(xHandle));
 
@@ -30,9 +28,7 @@ void testTask(void *pvParameter){
       data += 20;
     }
 
-    data_send.raw_data = data;
-
-    packageAndSend(xHandle, data_send);
+    packageAndSend(xHandle, data);
 
     vTaskDelay(5000/portTICK_PERIOD_MS);
   }

@@ -4,7 +4,7 @@ services:
     ### API Containter ###
     api:
         # MongoDB image name/version.
-        image: sheldonpi1999/intelliflow-api:1.0
+        image: sheldonpi1999/intelliflow-api:1.2
 
         # Defines that the service "mongo" must be running before this api service initializes.
         depends_on: ['mongo']
@@ -40,7 +40,7 @@ services:
     ### BROKER Containter ###
     broker:
         # MongoDB image name/version.
-        image: sheldonpi1999/intelliflow-broker:1.0
+        image: sheldonpi1999/intelliflow-broker:1.2
 
         # Defines that the service "mongo" must be running before this api service initializes.
         depends_on: ['api']

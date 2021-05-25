@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/CMakeFiles/bootloader"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/CMakeFiles/bootloader"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/CMakeFiles/bootloader.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/CMakeFiles/bootloader.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/CMakeFiles/bootloader-complete.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/CMakeFiles/bootloader-complete.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
 		},
 		{
-			"file" : "/Users/macbookkasper/Documents/Stage/GIthub/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+			"file" : "/Users/macbookkasper/Documents/Stage/Github/hardware/hardware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
 		}
 	],
 	"target" : 

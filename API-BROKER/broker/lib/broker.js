@@ -155,15 +155,30 @@ class Broker {
                     console.log(`Value = ${i}: ${topicfields[i]}`);
                 }
                 this.sensorInHub(topicfields[1], topicfields[2]);
-                try {
-                    axios_1.default.post('http://api:3030/api/v1/data', {
-                        hubId: topicfields[1],
-                        sensorId: topicfields[2],
-                        value: Number(packet.payload.toString()),
-                    });
+                if (topicfields.length > 3) {
+                    try {
+                        axios_1.default.post('http://api:3030/api/v1/data', {
+                            hubId: topicfields[1],
+                            sensorId: topicfields[2],
+                            value: Number(packet.payload.toString()),
+                            extraId: topicfields[4],
+                        });
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
                 }
-                catch (error) {
-                    console.log(error);
+                else {
+                    try {
+                        axios_1.default.post('http://api:3030/api/v1/data', {
+                            hubId: topicfields[1],
+                            sensorId: topicfields[2],
+                            value: Number(packet.payload.toString()),
+                        });
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
                 }
             }
         });
