@@ -170,6 +170,24 @@ const routes: Array<RouteConfig> = [
         beforeEnter: isLoggedIn,
     },
     {
+        path: '/Manual',
+        name: 'Manual',
+        component: () => import('../views/Manual.vue'),
+        meta: {
+            breadcrumbs: [
+                {
+                    to: '/',
+                    text: 'Dashboard',
+                },
+                {
+                    to: '/Manual',
+                    text: 'Manual',
+                },
+            ],
+        },
+        beforeEnter: isLoggedIn,
+    },
+    {
         path: '/login',
         name: 'Login',
         component: () => import('../views/Login.vue'),

@@ -181,6 +181,37 @@ class Broker {
                     }
                 }
             }
+            else if ((packet.topic).includes(">esp_config>")) {
+                let topicfields = (packet.topic).split('>');
+                for (let i = 0; i < topicfields.length; i++) {
+                    console.log(`Value = ${i}: ${topicfields[i]}`);
+                }
+                if (topicfields.length > 3) {
+                    try {
+                        axios_1.default.post('http://api:3030/api/v1/esp_config', {
+                            hubId: topicfields[1],
+                            sensorId: topicfields[2],
+                            pinMap: packet.payload.toString(),
+                            extraConfig: topicfields[4],
+                        });
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                }
+                else {
+                    try {
+                        axios_1.default.post('http://api:3030/api/v1/esp_config', {
+                            hubId: topicfields[1],
+                            sensorId: topicfields[2],
+                            pinMap: packet.payload.toString(),
+                        });
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
         });
     }
     listen() {

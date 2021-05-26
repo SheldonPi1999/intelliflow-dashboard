@@ -45,6 +45,7 @@ export default class DpNavigationDrawer extends Vue {
         users: require('@/assets/icons/users.svg'),
         storage: require('@/assets/icons/server.svg'),
         hardwareConfig: require('@/assets/icons/esp.svg'),
+        bookshelf: require('@/assets/icons/bookshelf.svg'),
         /* eslint-enable */
     };
 
@@ -69,6 +70,7 @@ export default class DpNavigationDrawer extends Vue {
         { header: true, text: 'EXTRA' },
         // Extra
         { title: 'Hardware config', icon: this.iconPaths.hardwareConfig, link: '/HardwareConfig' },
+        { title: 'Manual', icon: this.iconPaths.bookshelf, link: '/Manual' },
     ];
 }
 </script>

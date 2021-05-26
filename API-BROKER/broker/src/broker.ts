@@ -94,6 +94,14 @@ class Broker {
 
             } else if ((packet.topic).includes(">data>")) {
 
+                /*
+                    broker_1   | Value = 0: intelliflow
+                    broker_1   | Value = 1: TEST_001
+                    broker_1   | Value = 2: testTask0
+                    broker_1   | Value = 3: data
+                    broker_1   | Value = 4: 
+                */
+
                 let topicfields = (packet.topic).split('>');
 
                 for (let i = 0; i < topicfields.length; i++) {
@@ -126,6 +134,43 @@ class Broker {
                             sensorId: topicfields[2],
                             // @ts-ignore
                             value: Number(packet.payload.toString()),
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            } else if ((packet.topic).includes(">esp_config>")) {
+                
+                let topicfields = (packet.topic).split('>');
+
+                for (let i = 0; i < topicfields.length; i++) {
+                    console.log(`Value = ${i}: ${topicfields[i]}`)
+                }
+
+                if(topicfields.length > 3) {
+                    try {
+                        axios.post('http://api:3030/api/v1/esp_config', {
+                            // @ts-ignore
+                            hubId: topicfields[1],
+                            // @ts-ignore
+                            sensorId: topicfields[2],
+                            // @ts-ignore
+                            pinMap: packet.payload.toString(),
+                            // @ts-ignore
+                            extraConfig: topicfields[4],
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
+                } else {
+                    try {
+                        axios.post('http://api:3030/api/v1/esp_config', {
+                            // @ts-ignore
+                            hubId: topicfields[1],
+                            // @ts-ignore
+                            sensorId: topicfields[2],
+                            // @ts-ignore
+                            pinMap: packet.payload.toString(),
                         })
                     } catch (error) {
                         console.log(error);

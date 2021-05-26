@@ -73,23 +73,24 @@
                     </v-stepper-content>
 
                     <v-stepper-content step="3">
-                        <v-card class="mb-12" color="grey lighten-1" height="200px">
-                            <v-card v-for="hub in hubs" :key=hub>
+                        <v-card class="mb-5 hub__container" color="grey lighten-1" height="350px" flat>
+                            <v-card v-for="hub in hubs" :key=hub flat>
                                 <v-card-title> HUB: {{ hub }} </v-card-title>
-                                <v-row>
-                                    <v-col v-for="(sensor, index) in sensors" :key="sensor">
-                                        <v-container fluid>
-                                            <p>
-                                                {{ selectedSensorsIndex }}
-                                            </p>
-                                            <v-checkbox 
-                                                v-model="selectedSensorsIndex" 
-                                                :label="`${sensor.sensor.toString()}`"
-                                                :value="`${index}`"
-                                            ></v-checkbox>
-                                        </v-container>
-                                    </v-col>
-                                </v-row>
+                                <v-card-text>
+                                    <v-row class="sensorsChoice__container">
+                                        <div v-for="(sensor, index) in sensors" :key="sensor">
+                                            <v-col v-if="sensor.hub === hub">
+                                                <v-container fluid>
+                                                    <v-checkbox 
+                                                        v-model="selectedSensorsIndex" 
+                                                        :label="`${sensor.sensor.toString()}`"
+                                                        :value="`${index}`"
+                                                    ></v-checkbox>
+                                                </v-container>
+                                            </v-col>
+                                        </div>
+                                    </v-row>
+                                </v-card-text>
                             </v-card>
                         </v-card>
                         <v-btn @click="e1 = 2">
@@ -197,3 +198,17 @@ export default class Testing extends Vue {
     }
 }
 </script>
+
+<style lang="scss">
+.hub {
+    &__container {
+        height: 250px;
+        overflow: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+</style>
