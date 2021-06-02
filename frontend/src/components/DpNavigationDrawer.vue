@@ -51,7 +51,7 @@ export default class DpNavigationDrawer extends Vue {
 
     items: NavigationItems[] = [
         { title: 'Dashboard', icon: this.iconPaths.home, link: '/' },
-        { title: 'Simulation', icon: this.iconPaths.simulations, link: '/Simulations' },
+        { title: 'Create dataset', icon: this.iconPaths.simulations, link: '/Simulations' },
 
         { header: true, text: 'DEVICES' },
         // Devices

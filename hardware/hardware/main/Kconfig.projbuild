@@ -156,7 +156,7 @@ menu "Intelliflow Configuration"
         config TOP_LDR
             int "Top GPIO number"
             range 0 33
-            default 18
+            default 32
             help
                 GPIO number (IOxx) to access One Wire Bus.
 
@@ -167,7 +167,7 @@ menu "Intelliflow Configuration"
         config SIDE_LDR
             int "Side GPIO number"
             range 0 33
-            default 18
+            default 33
             help
                 GPIO number (IOxx) to access One Wire Bus.
 
@@ -177,23 +177,23 @@ menu "Intelliflow Configuration"
 
         menu "RGB LED Settings"
             config RED_LED
-                int "RGB GPIO number"
+                int "RED GPIO number"
                 range 0 33
-                default 18
+                default 15
                 help
                     RED LED.
 
             config GREEN_LED
-                int "RGB GPIO number"
+                int "GREEN GPIO number"
                 range 0 33
-                default 18
+                default 13
                 help
                     GREEN LED.
 
             config BLUE_LED
-                int "RGB GPIO number"
+                int "BLUE GPIO number"
                 range 0 33
-                default 18
+                default 2
                 help
                     BLUE LED.
         endmenu
@@ -208,14 +208,25 @@ menu "Intelliflow Configuration"
         
         config PRESSURESENSOR_AMOUNT
             int "How much pressure sensors?"
-            default 1
+            default 2
             help
                 Enter a number.
 
-        config DATA_PIN
+        config PRESSURE_DATA_PIN
             int "Datapin GPIO number"
             range 0 33
-            default 4
+            default 37
+            help
+                GPIO number (IOxx) to access One Wire Bus.
+
+                Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+                GPIOs 34-39 are input-only so cannot be used to drive the One Wire Bus.
+        
+        config PRESSURE_DATA_PIN_2
+            int "Datapin GPIO number"
+            range 0 33
+            default 38
             help
                 GPIO number (IOxx) to access One Wire Bus.
 

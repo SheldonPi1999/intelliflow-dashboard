@@ -13,19 +13,19 @@
 
 #include "./components/packageAndSend.h"
 
-TaskHandle_t xHandle;
-Data data_send;
+TaskHandle_t xHandleParticle;
 
-#define GPIO_OUTPUT_RED     15
-#define GPIO_OUTPUT_GREEN   13
-#define GPIO_OUTPUT_BLUE    2
+#define GPIO_OUTPUT_RED     CONFIG_RED_LED
+#define GPIO_OUTPUT_GREEN   CONFIG_GREEN_LED
+#define GPIO_OUTPUT_BLUE    CONFIG_BLUE_LED
 #define GPIO_OUTPUT_PIN_SEL ((1ULL<<GPIO_OUTPUT_RED) | (1ULL<<GPIO_OUTPUT_GREEN) | (1ULL<<GPIO_OUTPUT_BLUE))
-#define GPIO_INPUT_LDR_TOP  32
-#define GPIO_INPUT_LDR_SIDE 33
+#define GPIO_INPUT_LDR_TOP  CONFIG_TOP_LDR
+#define GPIO_INPUT_LDR_SIDE CONFIG_SIDE_LDR
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<GPIO_INPUT_LDR_TOP) | (1ULL<<GPIO_INPUT_LDR_SIDE))
 
 void particleSensorTask(void)
 {
+    xHandleParticle = xTaskGetCurrentTaskHandle();
     gpio_config_t io_conf;
     //disable interrupt
     io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
@@ -77,8 +77,7 @@ void particleSensorTask(void)
         value = adc1_get_raw(ADC1_CHANNEL_4);
         printf("TOP: %u\n", value);
 
-        data_send.raw_data = value;
-        packageAndSendExtraConf(xHandle, value, "Top");
+        packageAndSendExtraConf(xHandleParticle, value, "Top");
 
         vTaskDelay(100);
         
@@ -87,8 +86,7 @@ void particleSensorTask(void)
         value = adc1_get_raw(ADC1_CHANNEL_5);
         printf("SIDE: %u\n", value);
 
-        data_send.raw_data = value;
-        packageAndSendExtraConf(xHandle, value, "Side");
+        packageAndSendExtraConf(xHandleParticle, value, "Side");
         
         vTaskDelay(100);        
     }

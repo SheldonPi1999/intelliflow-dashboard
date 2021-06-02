@@ -229,12 +229,12 @@ export default {
             else if(this.V_data == maxValue) { this.detectedColor = "Violet"; }    
             this.$data.series.pop();
             this.$data.series.push({data: [
-                (this.R_data - (0.999999999 * this.R_data)), 
-                (this.G_data - (0.999999999 * this.G_data)), 
-                (this.B_data - (0.999999999 * this.B_data)),
-                (this.Y_data - (0.999999999 * this.Y_data)),
-                (this.O_data - (0.999999999 * this.O_data)),
-                (this.V_data - (0.999999999 * this.V_data))
+                ((this.R_data - (0.999999999 * this.R_data)) * 20), 
+                ((this.G_data - (0.999999999 * this.G_data)) * 20), 
+                ((this.B_data - (0.999999999 * this.B_data)) * 20),
+                ((this.Y_data - (0.999999999 * this.Y_data)) * 20),
+                ((this.O_data - (0.999999999 * this.O_data)) * 20),
+                ((this.V_data - (0.999999999 * this.V_data)) * 20)
             ]}); //[this.R_data, this.R_data, this.R_data, this.R_data, this.R_data, this.R_data];
         }
     },

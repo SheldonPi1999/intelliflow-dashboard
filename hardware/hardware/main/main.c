@@ -7,6 +7,7 @@
 #include "tasks/lightSensor/lightSensor.h"
 #include "tasks/tempSensor/tempSensor.h"
 #include "tasks/particleSensor/particleSensor.h"
+#include "tasks/pressureSensor/pressureSensor.h"
 #include "tasks/testTask/testTask.h"
 
 #include "wifi/wifi.h"
@@ -153,6 +154,19 @@ void app_main(void)
                 sprintf(tasknumber, "%u", i);
                 strcat(taskname, tasknumber);
                 xTaskCreate(&particleSensorTask, taskname, 2048, NULL, 5, NULL);
+                printf("%s started!\n", taskname);
+
+                sprintf(taskname, "%s", "");
+            }
+        #endif
+
+        #ifdef CONFIG_PRESSURE_SENSOR_TASK
+            for(uint i = 0; i < CONFIG_PRESSURESENSOR_AMOUNT; i++) {
+                char taskname[20] = "pressureSensor";
+                char tasknumber[2];
+                sprintf(tasknumber, "%u", i);
+                strcat(taskname, tasknumber);
+                xTaskCreate(&pressureSensorTask, taskname, 2048, NULL, 5, NULL);
                 printf("%s started!\n", taskname);
 
                 sprintf(taskname, "%s", "");

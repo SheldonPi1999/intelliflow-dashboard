@@ -17,7 +17,7 @@
                     class="display-2 font-weight-black"
                     v-text="lastSpeed"
                     ></span>
-                    <strong>N/m2</strong>
+                    <strong>m/s</strong>
                 </div>
             </v-row>
 
@@ -59,6 +59,7 @@ export default {
         setInterval(() => {
             this.getNewSensorData(this.speed.sensor, this.speed.hub_id);
             // console.log("Getting data");
+            this.speed.status = "Online"; 
         }, 1000);
     },
 
@@ -73,7 +74,7 @@ export default {
                 });
     
                 if (data.data.length < 5) {
-                    this.$data.speedData = [0, 0, 0, 0, 0];
+                    this.$data.speedData = [-999, -999, -999, -999, -999];
                 } else {
                     this.$data.speedData = [data.data[data.data.length - 5].value, data.data[data.data.length - 4].value, data.data[data.data.length - 3].value, data.data[data.data.length - 2].value,  data.data[data.data.length - 1].value];
                 }

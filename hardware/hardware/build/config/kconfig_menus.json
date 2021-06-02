@@ -2228,7 +2228,7 @@
                                     0,
                                     33
                                 ],
-                                "title": "RGB GPIO number",
+                                "title": "RED GPIO number",
                                 "type": "int"
                             },
                             {
@@ -2241,7 +2241,7 @@
                                     0,
                                     33
                                 ],
-                                "title": "RGB GPIO number",
+                                "title": "GREEN GPIO number",
                                 "type": "int"
                             },
                             {
@@ -2254,7 +2254,7 @@
                                     0,
                                     33
                                 ],
-                                "title": "RGB GPIO number",
+                                "title": "BLUE GPIO number",
                                 "type": "int"
                             }
                         ],
@@ -2295,8 +2295,21 @@
                         "children": [],
                         "depends_on": null,
                         "help": "GPIO number (IOxx) to access One Wire Bus.\n\nSome GPIOs are used for other purposes (flash connections, etc.) and cannot be used.\n\nGPIOs 34-39 are input-only so cannot be used to drive the One Wire Bus.",
-                        "id": "DATA_PIN",
-                        "name": "DATA_PIN",
+                        "id": "PRESSURE_DATA_PIN",
+                        "name": "PRESSURE_DATA_PIN",
+                        "range": [
+                            0,
+                            33
+                        ],
+                        "title": "Datapin GPIO number",
+                        "type": "int"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "GPIO number (IOxx) to access One Wire Bus.\n\nSome GPIOs are used for other purposes (flash connections, etc.) and cannot be used.\n\nGPIOs 34-39 are input-only so cannot be used to drive the One Wire Bus.",
+                        "id": "PRESSURE_DATA_PIN_2",
+                        "name": "PRESSURE_DATA_PIN_2",
                         "range": [
                             0,
                             33
@@ -14283,7 +14296,10 @@
                                 "help": "Modbus slave ID value to identify modbus device\nin the network using <Report Slave ID> command.\nMost significant byte of ID is used as short device ID and\nother three bytes used as long ID.",
                                 "id": "FMB_CONTROLLER_SLAVE_ID",
                                 "name": "FMB_CONTROLLER_SLAVE_ID",
-                                "range": null,
+                                "range": [
+                                    0,
+                                    285960729237
+                                ],
                                 "title": "Modbus controller slave ID",
                                 "type": "hex"
                             }

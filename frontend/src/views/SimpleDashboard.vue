@@ -6,9 +6,6 @@
         <v-col v-for="pressure in pressureS" :key="pressure" cols="6">
             <DppressureSensorChart :pressure="pressure"/>
         </v-col>
-        <v-col v-for="particle in particleS" :key="particle" cols="6">
-            <DpparticleSensorChart :particle="particle"/>
-        </v-col>
 
         <v-col v-for="test in testS" :key="test" cols="6">
             <DptestSensorChart :test="test"/>
@@ -18,6 +15,10 @@
             <DpspeedSensorChart :speed="speed"/>
         </v-col>
 
+        <v-col v-for="particle in particleS" :key="particle" cols="6">
+            <DpparticleSensorChart :particle="particle"/>
+        </v-col>
+        
         <v-col v-for="light in lightS" :key="light" cols="6">
             <DplightSensorChart :light="light"/>
         </v-col>
@@ -121,7 +122,7 @@ export default class TestDashboard extends Vue {
 
             console.log(this.pressureS.length);
 
-            for (let i = 0; i < this.pressureS.length; i++) {
+            for (let i = 0; i < this.pressureS.length-1; i++) {
                 console.log(this.pressureS.length);
                 const sensorInfo = {
                     hub_id: "Virtual created speedsensor",

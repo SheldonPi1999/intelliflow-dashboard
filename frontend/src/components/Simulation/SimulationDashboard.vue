@@ -210,6 +210,12 @@ export default class SimulationDashboard extends Props {
     }
 
     mounted() {
+        if(this.manual === false) {
+            this.getAllSensorData();
+            setInterval(() => {
+                this.pushDataOnTime();
+            }, 1000);
+        }
     }
 }
 </script>

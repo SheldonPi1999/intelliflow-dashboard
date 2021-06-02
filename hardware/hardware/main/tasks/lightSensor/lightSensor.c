@@ -359,27 +359,27 @@ void lightSensorTask(void *pvParameter){
       
         packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_VIOLET], "AS726x_VIOLET");
         // Delay 100ms
-        vTaskDelay(100);
+        vTaskDelay(1);
         
         packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_BLUE], "AS726x_BLUE");
         // Delay 100ms
-        vTaskDelay(100);
+        vTaskDelay(1);
         
         packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_GREEN], "AS726x_GREEN");
         // Delay 100ms
-        vTaskDelay(100);
+        vTaskDelay(1);
 
         packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_YELLOW], "AS726x_YELLOW");
         // Delay 100ms
-        vTaskDelay(100);
+        vTaskDelay(1);
 
         packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_ORANGE], "AS726x_ORANGE");
         // Delay 100ms
-        vTaskDelay(100);
+        vTaskDelay(1);
 
         packageAndSendExtraConf(xHandleLightSensor, calibratedValues[AS726x_RED], "AS726x_RED");
         // Delay 100ms
-        vTaskDelay(100);
+        vTaskDelay(1);
     }
 /*
     printf(" Violet: %x\n", calibratedValues[AS726x_VIOLET]);

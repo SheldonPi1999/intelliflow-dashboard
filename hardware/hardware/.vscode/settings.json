@@ -19,6 +19,7 @@
         "ds18b20.h": "c",
         "string.h": "c",
         "testtask.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "pressuresensor.h": "c"
     }
 }
