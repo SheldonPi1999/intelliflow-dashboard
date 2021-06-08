@@ -120,6 +120,7 @@ export default class TestDashboard extends Vue {
                 }
             }
 
+/*
             console.log(this.pressureS.length);
 
             for (let i = 0; i < this.pressureS.length-1; i++) {
@@ -130,13 +131,122 @@ export default class TestDashboard extends Vue {
                 };
                 this.speedS.push(sensorInfo);
             }
+*/
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+        async getVirtualSensorData() {
+        try {
+            const { data } = await axios.get('http://' + apiSettings.apiServerIP + ':' + apiSettings.apiServerPort + '/api/v1/data');
+
+            for (let i = 0; i < ((data.data).length); i += 1) {
+                
+                if(((data.data)[i].sensorId).includes("VIRTUAL")) {
+                    if (((data.data)[i].sensorsId).includes('temp')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hubId),
+                                sensor: ((data.data)[i].sensorsId),
+                                status: "Online",
+                            };
+                            this.tempS.push(sensorInfo);
+                        } else if (((data.data)[i].sensorsId).includes('light')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hubId),
+                                sensor: ((data.data)[i].sensorsId),
+                                status: "Online",
+                            };
+                            this.lightS.push(sensorInfo);
+                        } else if (((data.data)[i].sensorsId).includes('pressure')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hubId),
+                                sensor: ((data.data)[i].sensorsId),
+                                status: "Online",
+                            };
+                            this.pressureS.push(sensorInfo);
+                        } else if (((data.data)[i].sensorsId).includes('particle')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hubId),
+                                sensor: ((data.data)[i].sensorsId),
+                                status: "Online",
+                            };
+                            this.particleS.push(sensorInfo);
+                        } else if (((data.data)[i].sensorsId).includes('speed')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hubId),
+                                sensor: ((data.data)[i].sensorsId),
+                                status: "Online",
+                            };
+                            this.speedS.push(sensorInfo);
+                        } else {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hubId),
+                                sensor: ((data.data)[i].sensorsId),
+                                status: "Online",
+                            };
+                            this.testS.push(sensorInfo);
+                        }
+                }
+                /*
+                for (let j = 0; j < ((data.data)[i].sensors).length; j += 1) {
+                    console.log((data.data)[i].new);
+                    if (((data.data)[i].new) === false) {
+                        if (((data.data)[i].sensors[j]).includes('temp')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hub_id),
+                                sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
+                            };
+                            this.tempS.push(sensorInfo);
+                        } else if (((data.data)[i].sensors[j]).includes('light')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hub_id),
+                                sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
+                            };
+                            this.lightS.push(sensorInfo);
+                        } else if (((data.data)[i].sensors[j]).includes('pressure')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hub_id),
+                                sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
+                            };
+                            this.pressureS.push(sensorInfo);
+                        } else if (((data.data)[i].sensors[j]).includes('particle')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hub_id),
+                                sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
+                            };
+                            this.particleS.push(sensorInfo);
+                        } else if (((data.data)[i].sensors[j]).includes('speed')) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hub_id),
+                                sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
+                            };
+                            this.speedS.push(sensorInfo);
+                        } else {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hub_id),
+                                sensor: ((data.data)[i].sensors[j]),
+                                status: (data.data)[i].status,
+                            };
+                            this.testS.push(sensorInfo);
+                        }
+                    }
+                } */
+                
+            }
         } catch (error) {
             console.log(error);
         }
     }
 
     mounted() {
-        this.getAllSensorData();
+        // this.getAllSensorData();
+        this.getVirtualSensorData();
     }
 }
 </script>
