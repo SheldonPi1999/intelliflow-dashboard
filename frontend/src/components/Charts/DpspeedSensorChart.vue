@@ -50,8 +50,9 @@ export default {
 
     computed: {
         lastSpeed() {
-            const sum = this.$data.speedData[4];
-            return sum;
+            const lastSpeed = Number(this.$data.speedData[4]);
+            const lastSpeedString = (lastSpeed.toFixed(2)).toString()
+            return lastSpeedString;
         },
     },
 

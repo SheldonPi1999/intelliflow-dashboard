@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "sdkconfig.h": "c",
+        "q2hx711.h": "c"
+    }
+}

@@ -60,6 +60,8 @@ export default class TestDashboard extends Vue {
 
     speedS = [];
 
+    virtual = [];
+
     // eslint-disable-next-line
     async getAllSensorData() {
         try {
@@ -71,7 +73,6 @@ export default class TestDashboard extends Vue {
 
             for (let i = 0; i < ((data.data).length); i += 1) {
                 for (let j = 0; j < ((data.data)[i].sensors).length; j += 1) {
-                    console.log((data.data)[i].new);
                     if (((data.data)[i].new) === false) {
                         if (((data.data)[i].sensors[j]).includes('temp')) {
                             const sensorInfo = {
@@ -119,19 +120,6 @@ export default class TestDashboard extends Vue {
                     }
                 }
             }
-
-/*
-            console.log(this.pressureS.length);
-
-            for (let i = 0; i < this.pressureS.length-1; i++) {
-                console.log(this.pressureS.length);
-                const sensorInfo = {
-                    hub_id: "Virtual created speedsensor",
-                    sensor: "Virtual",
-                };
-                this.speedS.push(sensorInfo);
-            }
-*/
         } catch (error) {
             console.log(error);
         }
@@ -142,50 +130,67 @@ export default class TestDashboard extends Vue {
             const { data } = await axios.get('http://' + apiSettings.apiServerIP + ':' + apiSettings.apiServerPort + '/api/v1/data');
 
             for (let i = 0; i < ((data.data).length); i += 1) {
-                
                 if(((data.data)[i].sensorId).includes("VIRTUAL")) {
-                    if (((data.data)[i].sensorsId).includes('temp')) {
+                    if (((data.data)[i].sensorId).includes("temp")) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hubId),
                                 sensor: ((data.data)[i].sensorsId),
                                 status: "Online",
                             };
-                            this.tempS.push(sensorInfo);
-                        } else if (((data.data)[i].sensorsId).includes('light')) {
+                            if (!(this.virtual.includes(((data.data)[i].sensorId)))) {
+                                this.virtual.push(((data.data)[i].sensorId)); 
+                                this.tempS.push(sensorInfo);
+                            }
+                    } else if (((data.data)[i].sensorId).includes("light")) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hubId),
                                 sensor: ((data.data)[i].sensorsId),
                                 status: "Online",
                             };
-                            this.lightS.push(sensorInfo);
-                        } else if (((data.data)[i].sensorsId).includes('pressure')) {
+                            if (!(this.virtual.includes(((data.data)[i].sensorId)))) {
+                                this.virtual.push(((data.data)[i].sensorId)); 
+                                this.lightS.push(sensorInfo);
+                            }
+                    } else if (((data.data)[i].sensorId).includes("pressure")) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hubId),
                                 sensor: ((data.data)[i].sensorsId),
                                 status: "Online",
                             };
-                            this.pressureS.push(sensorInfo);
-                        } else if (((data.data)[i].sensorsId).includes('particle')) {
+                            if (!(this.virtual.includes(((data.data)[i].sensorId)))) {
+                                this.virtual.push(((data.data)[i].sensorId)); 
+                                this.pressureS.push(sensorInfo);
+                            }
+                    } else if (((data.data)[i].sensorId).includes("particle")) {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hubId),
                                 sensor: ((data.data)[i].sensorsId),
                                 status: "Online",
                             };
-                            this.particleS.push(sensorInfo);
-                        } else if (((data.data)[i].sensorsId).includes('speed')) {
+                            if (!(this.virtual.includes(((data.data)[i].sensorId)))) {
+                                this.virtual.push(((data.data)[i].sensorId)); 
+                                this.particleS.push(sensorInfo);
+                            }
+                    } else if (((data.data)[i].sensorId).includes("speed")) {
+                            const sensorInfo = {
+                                hub_id: ((data.data)[i].hubId),
+                                sensor: ((data.data)[i].sensorId),
+                                status: "Online",
+                            };
+                            if (!(this.virtual.includes(((data.data)[i].sensorId)))) {
+                                this.virtual.push(((data.data)[i].sensorId));
+                                this.speedS.push(sensorInfo);   
+                            }
+                    } else {
                             const sensorInfo = {
                                 hub_id: ((data.data)[i].hubId),
                                 sensor: ((data.data)[i].sensorsId),
                                 status: "Online",
                             };
-                            this.speedS.push(sensorInfo);
-                        } else {
-                            const sensorInfo = {
-                                hub_id: ((data.data)[i].hubId),
-                                sensor: ((data.data)[i].sensorsId),
-                                status: "Online",
-                            };
-                            this.testS.push(sensorInfo);
+                            if (!(this.virtual.includes(((data.data)[i].sensorId)))) {
+                                this.virtual.push(((data.data)[i].sensorId)); 
+                                this.testS.push(sensorInfo);
+                            }
                         }
                 }
                 /*
@@ -245,7 +250,7 @@ export default class TestDashboard extends Vue {
     }
 
     mounted() {
-        // this.getAllSensorData();
+        this.getAllSensorData();
         this.getVirtualSensorData();
     }
 }
